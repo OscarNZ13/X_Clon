@@ -1,0 +1,213 @@
+body,
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Times New Roman', Times, serif, Geneva, Tahoma, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    background-image: url("../img/bg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Fija la imagen de fondo */
+}
+
+.layout {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid:
+        "aside header header" 100px "aside main main" auto "aside main main" auto / 240px 1fr 1fr;
+    gap: 3px;
+}
+
+.aside {
+    grid-area: aside;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.Logo-X {
+    height: 100px;
+    width: 100px;
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+
+
+.Btn-Message {
+    border-style: none;
+    border-radius: 20px;
+    height: 30px;
+    width: 100px;
+}
+
+.Perfil-box {
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 10px;
+
+    height: auto;
+    /* Ajuste la altura automática */
+    width: 150px;
+    margin-top: 30px;
+    /* Mueve el Perfil-box hacia abajo del aside */
+    display: flex;
+    /* Usa flexbox para alinear los elementos verticalmente */
+    flex-direction: column;
+    /* Cambia la dirección del eje principal a vertical */
+    justify-content: center;
+    /* Centra los elementos verticalmente */
+    align-items: center;
+    /* Centra los elementos horizontalmente */
+    padding: 15px;
+    /* Ajusta el espacio interno */
+    margin-left: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Añade este estilo para centrar el texto dentro del contenedor */
+}
+
+.Perfil-img {
+    margin-right: 10px;
+    padding-left: 10px;
+    /* Añade espacio entre la imagen y el párrafo */
+}
+
+.User-pic {
+    height: 90px;
+    width: 90px;
+    border-radius: 30px;
+}
+
+.Username-p {
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+    /* Centra el texto horizontalmente */
+}
+
+.Btn-editar-perfil {
+    border-radius: 7px;
+    margin-top: 5px;
+    /* Espacio entre el nombre de usuario y el botón */
+    width: 50%;
+    /* Añade un ancho del 100% */
+    border-style: none;
+}
+
+.Btn-Message-box {
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 10px;
+
+    margin-top: 30px;
+    margin-left: 55px;
+    margin-right: 60px;
+    padding: 10px;
+}
+
+.Btn-Message {
+    border-radius: 7px;
+}
+
+.header {
+    grid-area: header;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente los elementos */
+    justify-content: space-between;
+    padding: 10px 20px;
+    overflow-y: auto;
+}
+
+.modo-feed-box,
+.Barra-busqueda-box,
+.Nuevo-post-box {
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 10px;
+    padding: 10px;
+    padding-top: 8px;
+}
+
+.Barra-busqueda-box {
+    display: flex;
+    /* Para alinear los elementos horizontalmente */
+    align-items: center;
+    /* Centra verticalmente los elementos */
+}
+
+
+.modo-feed-box {
+    margin-right: 100px;
+}
+
+.Nuevo-post-box {
+    margin-left: 100px;
+}
+
+.Btn-todo {
+    border-radius: 5px;
+    border-style: none;
+}
+
+.Btn-siguiendo {
+    border-radius: 5px;
+    border-style: none;
+}
+
+.Btn-new-post {
+    border-radius: 5px;
+    border-style: none;
+}
+
+.search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.search-button {
+    padding: 15px;
+    /* Ajusta el relleno del botón */
+    background-image: url("../img/Search.png");
+    background-size: contain;
+    /* Cambia a 'contain' para que la imagen se ajuste al tamaño del botón */
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    /* Reduce el radio del borde para que se vea más redondeado */
+}
+
+.main {
+    grid-area: main;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}

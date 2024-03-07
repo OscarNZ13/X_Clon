@@ -1,0 +1,77 @@
+body,
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Times New Roman', Times, serif, Geneva, Tahoma, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    margin: -30px;
+    /* Eliminar márgenes predeterminados */
+    overflow: hidden;
+    /* Evitar scroll en la página */
+    background-image: url("../img/bg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
+    display: flex;
+    /* Usar flexbox para centrar verticalmente el contenido */
+    justify-content: center;
+    /* Centrar horizontalmente el contenido */
+    align-items: center;
+    /* Centrar verticalmente el contenido */
+}
+
+.Login-Box {
+    color: white;
+    width: 300px;
+    height: 200px;
+    /* Ancho y altura del formulario */
+    background: rgba(0, 0, 0, 0.425);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    /* Utilizar flexbox */
+    flex-direction: column;
+    /* Organizar los elementos verticalmente */
+    justify-content: center;
+    /* Centrar verticalmente los elementos */
+    align-items: center;
+    /* Centrar horizontalmente los elementos */
+}
+
+.input-Username {
+    margin-left: 30px;
+    width: 100px;
+    padding-right: 13px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.input-Password {
+    width: 100px;
+    margin-left: 4px;
+    padding-right: 13px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.Btn-Summit {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    border-style: none;
+    height: 20px;
+    width: 70px;
+    border-radius: 7px;
+}
+
+.Btn-Register {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    border-style: none;
+    height: 20px;
+    width: 100px;
+    border-radius: 7px;
+}
