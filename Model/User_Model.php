@@ -1,19 +1,14 @@
 <?php
+include('../Db/Connection_db.php');
+
 class UserModel
 {
     public function authenticateUser($username, $password)
     {
-        include('../Db/Connection_db.php');
-
-        // Verificar si la conexión a la base de datos se estableció correctamente
-        if ($Conexion->connect_errno) {
-            // Si hay un error de conexión, se muestra un mensaje de error y se devuelve false
-            echo "Error de conexión a la base de datos: " . $Conexion->connect_error;
-            return false;
-        }
+        global $Conexion;
 
         // Se crea la consulta para autenticar al usuario
-        $Consulta = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+        $Consulta = "SELECT * FROM user WHERE Nombre = '$username' AND Contraseña = '$password'";
 
         // Ejecutar la consulta
         $Resultado = $Conexion->query($Consulta);
@@ -33,8 +28,10 @@ class UserModel
             // Si no se encontraron filas, el usuario no está autenticado y se devuelve false
             return false;
         }
+    }
 
-        // Cerrar la conexión a la base de datos
-        $Conexion->close();
+    public function RegisterUser($username, $password){
+        global $Conexion;
+        
     }
 }
