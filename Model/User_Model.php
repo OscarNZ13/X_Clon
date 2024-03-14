@@ -29,4 +29,9 @@ class UserModel
             return false;
         }
     }
+
+    public function RegisterUser($username, $password){
+        global $Conexion;
+        
+    }
 }
