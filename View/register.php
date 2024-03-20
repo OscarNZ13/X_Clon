@@ -11,7 +11,7 @@
 <body>
 
     <div class="Login-Box">
-        <form action="../Controller/login_controller.php" method="post">
+        <form action="../Controller/register_controller.php" method="post">
             <h1 class="h1-2">Registro</h1>
 
             <p>Email
@@ -27,10 +27,10 @@
             </p>
 
             <p>Ubicacion
-                <input type="password" placeholder="ubi..." name="Contrasena" class="input-Location">
+                <input type="location" placeholder="ubi..." name="Locacion" class="input-Location">
             </p>
 
-            <button class="Btn-Register-2" type="summit" value="register">Crear cuenta</button>
+            <button class="Btn-Register-2" type="summit" value="register" name="btn-crear">Crear cuenta</button>
 
         </form>
     </div>
