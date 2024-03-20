@@ -24,9 +24,6 @@ body {
 .Login-Box {
     color: white;
     width: 300px;
-    /* Elimina la altura fija */
-    /* height: 200px; */
-    /* Ancho y altura del formulario */
     background: rgba(0, 0, 0, 0.425);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur(4px);
@@ -84,9 +81,7 @@ body {
 }
 
 .Btn-Summit {
-    margin-left: 10px;
-    margin-bottom: 15px;
-    border-style: none;
+    margin-left: 65px;
     height: 20px;
     width: 70px;
     border-radius: 7px;
@@ -171,4 +166,21 @@ body {
     text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
     box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
         0 0 100px #008cff;
+}
+
+.Texto-Registro{
+    font-size: small;
+}
+.link-FRegistro{
+    color: #ffffff;
+}
+
+.link-FRegistro:hover{
+    color: #1aff00;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px; /* Ajusta el tamaño de fuente según sea necesario */
+    margin-top: 5px; /* Espacio entre el mensaje de error y los campos de entrada */
 }
