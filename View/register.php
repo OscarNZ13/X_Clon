@@ -33,6 +33,9 @@
             <button class="Btn-Register-2" type="summit" value="register" name="btn-crear">Crear cuenta</button>
 
         </form>
+
+        <p class="Texto-Registro">¿Ya tienes una cuenta? <a href="index.php" class="link-FRegistro">Inicia Sesion aquí</a></p>
+        
     </div>
 
 </body>

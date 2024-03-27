@@ -168,19 +168,22 @@ body {
         0 0 100px #008cff;
 }
 
-.Texto-Registro{
+.Texto-Registro {
     font-size: small;
 }
-.link-FRegistro{
+
+.link-FRegistro {
     color: #ffffff;
 }
 
-.link-FRegistro:hover{
+.link-FRegistro:hover {
     color: #1aff00;
 }
 
 .error-message {
     color: red;
-    font-size: 14px; /* Ajusta el tamaño de fuente según sea necesario */
-    margin-top: 5px; /* Espacio entre el mensaje de error y los campos de entrada */
+    font-size: 14px;
+    /* Ajusta el tamaño de fuente según sea necesario */
+    margin-top: 5px;
+    /* Espacio entre el mensaje de error y los campos de entrada */
 }
