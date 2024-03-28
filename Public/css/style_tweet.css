@@ -1,0 +1,67 @@
+.tweet {
+    background-color: #f5f8fa;
+    border: 5px solid #e1e8ed;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    max-width: 900px; /* Establece el ancho máximo del tweet */
+    margin-left: auto; /* Centra el tweet en el contenedor */
+    margin-right: auto; /* Centra el tweet en el contenedor */
+}
+/* Estilo para el contenido del tweet */
+.tweet-content {
+    font-size: 16px;
+    color: #1d2129;
+    margin-bottom: 10px;
+}
+
+/* Estilo para la fecha del tweet */
+.tweet-date {
+    font-size: 12px;
+    color: #7a8b99;
+}
+
+/* Estilo para la información adicional del tweet */
+.tweet-info {
+    font-size: 12px;
+    color: #7a8b99;
+    margin-top: 5px;
+}
+
+/* Estilo para el nombre de usuario */
+.username {
+    font-weight: bold;
+    color: #1d2129;
+}
+
+/* Estilo para el contenedor del nombre de usuario y la fecha */
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+/* Estilo para la imagen de perfil del usuario en el tweet */
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Estilo para el retweet y el icono de me gusta */
+.tweet-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Estilo para los iconos de retweet y me gusta */
+.tweet-action-icon {
+    margin-right: 5px;
+}
+
+/* Estilo para el número de retweets y me gusta */
+.tweet-action-count {
+    color: #7a8b99;
+}

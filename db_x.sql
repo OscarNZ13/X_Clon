@@ -72,6 +72,16 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`ID_Usuario`, `Nombre`, `CorreoElectronico`, `Contraseña`, `FechaCreacion`, `Biografia`, `Ubicacion`, `FotoPerfil`) VALUES
 (1, 'Oscar', 'oscarnaranjoz13@gmail.com', 'oscar123', '2024-03-07 18:14:41', 'lml', 'Alajuela', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pngtree.com%2Ffree-backgrounds-photos%2Ftwitter-sin-foto-de-perfil&psig=AOvVaw1ZxZE2OmqtnVfoS18r53hF&ust=1709921481401000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCcrYbg4oQDFQAAAAAdAAAAABAF');
 
+
+--
+-- Volcado de datos para la tabla `tweets`
+--
+
+INSERT INTO tweets (ID_Tweet, ID_Usuario, Contenido, FechaPublicacion, Likes, Retweets) 
+VALUES 
+(1, 1, 'Este es el primer tweet', CURRENT_TIMESTAMP, 10, 5),
+(2, 1, 'Este es el segundo tweet', CURRENT_TIMESTAMP, 8, 3);
+
 --
 -- Índices para tablas volcadas
 --
