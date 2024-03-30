@@ -1,6 +1,10 @@
 <?php
 
-include ('../Db/Connection_db.php');
+session_start();
+    include ('../Db/Connection_db.php');
+
+    if (isset($_SESSION['Usuario'])) {
+        $username = $_SESSION['Usuario'];}
 
 ?>
 
@@ -33,7 +37,7 @@ include ('../Db/Connection_db.php');
                 </div>
 
                 <p class="Username-p">
-                    User
+                    <a href="../Controller/profile_controller.php" class="Username-link"><?php echo $_SESSION['Usuario']; ?></a>
                 </p>
 
                 <button class="Btn-editar-perfil" type="button">

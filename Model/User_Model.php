@@ -1,9 +1,8 @@
 <?php
 include ('../Db/Connection_db.php');
-
 class UserModel
 {
-    public function authenticateUser($username, $password)
+        public function authenticateUser($username, $password)
     {
         global $Conexion;
 
@@ -86,5 +85,34 @@ class UserModel
 
         // Si todas las validaciones pasan, devuelve true
         return true;
+    }
+
+    public function getUserByUsername($username)
+    {
+        global $Conexion;$Consulta = "SELECT * FROM user WHERE Nombre = '$username'";
+        $Resultado = $Conexion->query($Consulta);
+        
+        if ($Resultado->num_rows > 0) {
+            return $Resultado->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+
+    public function getTweetsByUserId($userId)
+    {
+        global $Conexion;
+
+        $Consulta = "SELECT * FROM tweets WHERE ID_Usuario = '$userId'";
+        $Resultado = $Conexion->query($Consulta);
+
+        $tweets = array();
+
+        if ($Resultado->num_rows > 0) {
+            while ($fila = $Resultado->fetch_assoc()) {
+                $tweets[] = $fila;
+            }
+        }
+        return $tweets;
     }
 }
