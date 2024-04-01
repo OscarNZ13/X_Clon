@@ -24,8 +24,6 @@ body {
 .Login-Box {
     color: white;
     width: 300px;
-    height: 200px;
-    /* Ancho y altura del formulario */
     background: rgba(0, 0, 0, 0.425);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter: blur(4px);
@@ -40,38 +38,152 @@ body {
     /* Centrar verticalmente los elementos */
     align-items: center;
     /* Centrar horizontalmente los elementos */
+    padding: 20px;
+    /* Añade un poco de espacio dentro del box */
+}
+
+.h1-1 {
+    margin-left: 20px;
+}
+
+.h1-2 {
+    margin-left: 54px;
 }
 
 .input-Username {
-    margin-left: 30px;
-    width: 100px;
+
+    width: 164px;
     padding-right: 13px;
     border-radius: 5px;
     border-style: none;
 }
 
 .input-Password {
-    width: 100px;
-    margin-left: 4px;
+    width: 138px;
+
+    padding-right: 13px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.input-Email {
+    width: 180px;
+    padding-right: 13px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.input-Location {
+    width: 148px;
     padding-right: 13px;
     border-radius: 5px;
     border-style: none;
 }
 
 .Btn-Summit {
-    margin-left: 10px;
-    margin-bottom: 15px;
-    border-style: none;
+    margin-left: 65px;
     height: 20px;
     width: 70px;
     border-radius: 7px;
-}
 
-.Btn-Register {
-    margin-left: 10px;
-    margin-bottom: 15px;
-    border-style: none;
     height: 20px;
     width: 100px;
+    font-size: 10px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    color: #ffffff80;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #ffffff80;
+    transition: 0.5s ease;
+    user-select: none;
+}
+
+.Btn-Register-1 {
+    margin-left: 13px;
+    margin-bottom: 5px;
     border-radius: 7px;
+
+    height: 20px;
+    width: 100px;
+    font-size: 10px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    color: #ffffff80;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #ffffff80;
+    transition: 0.5s ease;
+    user-select: none;
+}
+
+.Btn-Register-2 {
+    height: 20px;
+    width: 100px;
+    font-size: 10px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    color: #ffffff80;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #ffffff80;
+    transition: 0.5s ease;
+    user-select: none;
+    margin-left: 65px;
+}
+
+.Btn-Register-2:hover,
+:focus {
+    color: #ffffff;
+    background: #008cff;
+    border: 1px solid #008cff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+    box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+        0 0 100px #008cff;
+}
+
+.Btn-Register-1:hover,
+:focus {
+    color: #ffffff;
+    background: #008cff;
+    border: 1px solid #008cff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+    box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+        0 0 100px #008cff;
+}
+
+.Btn-Summit:hover,
+:focus {
+    color: #ffffff;
+    background: #008cff;
+    border: 1px solid #008cff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+    box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+        0 0 100px #008cff;
+}
+
+.Texto-Registro {
+    font-size: small;
+}
+
+.link-FRegistro {
+    color: #ffffff;
+}
+
+.link-FRegistro:hover {
+    color: #1aff00;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    /* Ajusta el tamaño de fuente según sea necesario */
+    margin-top: 5px;
+    /* Espacio entre el mensaje de error y los campos de entrada */
 }
