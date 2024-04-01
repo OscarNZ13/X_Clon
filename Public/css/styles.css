@@ -1,0 +1,211 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');*/
+
+:root {
+    --twitter-color: #50b7f5;
+    --twitter-background: #e6ecf0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas:
+        "sidebar main right_sidebar"
+        "sidebar main right_sidebar";
+    gap: 20px;
+}
+
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #fff;
+    border-right: 1px solid var(--twitter-background);
+    padding: 20px 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+}
+
+.sidebar ul li.active_menu a {
+    color: var(--twitter-color);
+    font-weight: 700;
+    background-color: rgba(29, 161, 242, 0.1);
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar ul li span {
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+.sidebar .sidebar_tweet {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: var(--twitter-color);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .sidebar_tweet:hover {
+    background-color: #3f9ae5;
+}
+
+.main {
+    grid-area: main;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.profile-info .edit-profile {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    background-color: var(--twitter-color);
+    color: #fff;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.profile-info .edit-profile:hover {
+    background-color: #3f9ae5;
+}
+
+.tweets {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.tweet {
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.tweet p {
+    margin-bottom: 10px;
+}
+
+.tweet span {
+    color: #657786;
+    font-size: 14px;
+}
+
+.tweet-actions {
+    margin-top: 10px;
+}
+
+.tweet-actions button {
+    background-color: transparent;
+    border: none;
+    color: #1da1f2;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.tweet-reactions {
+    margin-top: 10px;
+}
+
+.likes-count,
+.comments-count {
+    margin-right: 10px;
+    color: #657786;
+    font-size: 14px;
+}
+
+.right_sidebar {
+    grid-area: right_sidebar;
+}
+
+.profile-actions {
+    margin-top: 10px;
+}
+
+.follow-btn, .unfollow-btn, .leave-btn {
+    background-color: #1da1f2;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.unfollow-btn {
+    background-color: #ff4500; /* Color para dejar de seguir */
+}
