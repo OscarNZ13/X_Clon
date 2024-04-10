@@ -1,8 +1,9 @@
 <?php
-include ('../Db/Connection_db.php');
+include('../Db/Connection_db.php');
+
 class UserModel
 {
-        public function authenticateUser($username, $password)
+    public function authenticateUser($username, $password)
     {
         global $Conexion;
 
@@ -69,7 +70,7 @@ class UserModel
     public function ValidarDatos($username, $email, $password, $location)
     {
         // Verificar si algún campo está vacío
-        if (empty ($username) || empty ($email) || empty ($password) || empty ($location)) {
+        if (empty($username) || empty($email) || empty($password) || empty($location)) {
             return "Todos los campos son obligatorios";
         }
 
@@ -87,15 +88,56 @@ class UserModel
         return true;
     }
 
+    // FUncion para traer toda la informacion de un usuario:
     public function getUserByUsername($username)
     {
-        global $Conexion;$Consulta = "SELECT * FROM user WHERE Nombre = '$username'";
+        global $Conexion;
+        $Consulta = "SELECT * FROM user WHERE Nombre = '$username'";
         $Resultado = $Conexion->query($Consulta);
-        
+
         if ($Resultado->num_rows > 0) {
             return $Resultado->fetch_assoc();
         } else {
             return null;
+        }
+    }
+
+
+    // Funcion para alterar el seguimiento (Este mismo metodo elimina y añade un seguimiento):
+    public function toggleFollow($ID_Seguidor, $ID_Seguido)
+    {
+        global $Conexion;
+    
+        // Verificar si ya existe una relación de seguimiento entre el seguidor y el seguido
+        $ConsultaExistencia = "SELECT * FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
+        $ResultadoExistencia = $Conexion->query($ConsultaExistencia);
+    
+        if ($ResultadoExistencia->num_rows > 0) {
+            // Si ya existe la relación, eliminarla (dejar de seguir)
+            $ConsultaEliminar = "DELETE FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
+            $ResultadoEliminar = $Conexion->query($ConsultaEliminar);
+    
+            if ($ResultadoEliminar === true) {
+                // Si la eliminación se realizó correctamente, se devuelve true
+                return true;
+            } else {
+                // Si hay un error en la eliminación, se muestra un mensaje de error
+                echo "Error al dejar de seguir: " . $Conexion->error;
+                return false;
+            }
+        } else {
+            // Si no existe la relación, agregarla (seguir)
+            $ConsultaAgregar = "INSERT INTO `relacionseguimiento` (`ID_Seguidor`, `ID_Seguido`) VALUES ('$ID_Seguidor', '$ID_Seguido')";
+            $ResultadoAgregar = $Conexion->query($ConsultaAgregar);
+    
+            if ($ResultadoAgregar === true) {
+                // Si la inserción se realizó correctamente, se devuelve true
+                return true;
+            } else {
+                // Si hay un error en la inserción, se muestra un mensaje de error
+                echo "Error al seguir: " . $Conexion->error;
+                return false;
+            }
         }
     }
 

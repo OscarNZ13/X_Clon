@@ -1,0 +1,40 @@
+body,
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Times New Roman', Times, serif, Geneva, Tahoma, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    margin: 0; /* Corregido el margen */
+    overflow: hidden;
+    background-image: url("../img/bg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex; /* Utilizar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.UserProfile-Box {
+    color: white;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.425);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.img-atras-perfil{
+    height: 40px;
+    width: 40px;
+}
+
+.div-img-usuario{
+    height: 100px;
+    width: 100px;
+}
