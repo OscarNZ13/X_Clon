@@ -1,10 +1,11 @@
 <?php
 
 session_start();
-    include ('../Db/Connection_db.php');
+include('../Db/Connection_db.php');
 
-    if (isset($_SESSION['Usuario'])) {
-        $username = $_SESSION['Usuario'];}
+if (isset($_SESSION['Usuario'])) {
+    $username = $_SESSION['Usuario'];
+}
 
 ?>
 
@@ -31,17 +32,15 @@ session_start();
 
             <div class="Perfil-box">
                 <div class="Perfil-img">
-                    <img class="User-pic"
-                        src="https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg"
-                        alt="" srcset="">
+                    <img class="User-pic" src="https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg" alt="" srcset="">
                 </div>
 
                 <p class="Username-p">
-                    <a href="../Controller/profile_controller.php" class="Username-link"><?php echo $_SESSION['Usuario']; ?></a>
+                    <?php echo $_SESSION['Usuario']; ?>
                 </p>
 
                 <button class="Btn-editar-perfil" type="button">
-                    Editar
+                    <a href="../view/user_profile.php" class="Username-link">Editar</a>
                 </button>
             </div>
 
