@@ -1,12 +1,14 @@
 <?php
-
 session_start();
 include('../Db/Connection_db.php');
+include_once('../Model/User_Model.php');
+include_once('../Model/Tweet_Model.php');
 
 if (isset($_SESSION['Usuario'])) {
     $username = $_SESSION['Usuario'];
-}
-
+    $userModel = new UserModel();
+    $user = $userModel->getUserByUsername($username);
+    $userID = $user['ID_Usuario']; // Obtener el ID_Usuario del usuario logueado
 ?>
 
 <!DOCTYPE html>
@@ -66,38 +68,37 @@ if (isset($_SESSION['Usuario'])) {
                 <button class="search-button"></button>
             </div>
 
-
+            <!-- Formulario para escribir un nuevo tweet -->
             <div class="Nuevo-post-box">
-                <button type="button" class="Btn-new-post">
-                    Nuevo Post
-                </button>
+                <form action="../Controller/tweet_controller.php" method="post" class="tweet-form">
+                    <textarea name="contenido" placeholder="Escribe tu tweet aquí" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
             </div>
         </div>
 
         <div class="main">
             <?php
             // Consulta SQL para recuperar los tweets
-            $query = "SELECT * FROM tweets ORDER BY FechaPublicacion DESC";
-            $result = $Conexion->query($query);
+            $tweetModel = new TweetModel();
+            $tweets = $tweetModel->getAllTweets();
 
-            if ($result->num_rows > 0) {
-                // Iterar sobre los resultados y mostrar los tweets
-                while ($row = $result->fetch_assoc()) {
-                    $tweetID = $row['ID_Tweet'];
-                    $userID = $row['ID_Usuario'];
-                    $tweetContent = $row['Contenido'];
-                    $tweetDate = $row['FechaPublicacion'];
-                    $likes = $row['Likes'];
-                    $retweets = $row['Retweets'];
+            if (!empty($tweets)) {
+                foreach ($tweets as $tweet) {
+                    $tweetID = $tweet['ID_Tweet'];
+                    $userID = $tweet['ID_Usuario'];
+                    $tweetContent = $tweet['Contenido'];
+                    $tweetDate = $tweet['FechaPublicacion'];
+                    $likes = $tweet['Likes'];
+                    $retweets = $tweet['Retweets'];
 
                     // Consultar el nombre de usuario en la tabla de usuarios
-                    $user_query = "SELECT Nombre FROM user WHERE ID_Usuario = $userID";
-                    $user_result = $Conexion->query($user_query);
-                    if ($user_result->num_rows > 0) {
-                        $user_row = $user_result->fetch_assoc();
-                        $username = $user_row['Nombre'];
+                    $userModel = new UserModel();
+                    $user = $userModel->getUserByID($userID);
+                    if ($user) {
+                        $username = $user['Nombre'];
                     } else {
-                        $username = "Usuario Desconocido"; // Si no se encuentra el usuario, mostrar un nombre genérico
+                        $username = "Usuario Desconocido";
                     }
 
                     // Mostrar el tweet con toda la información
@@ -110,6 +111,13 @@ if (isset($_SESSION['Usuario'])) {
                     echo '<div class="tweet-footer">';
                     echo '<span class="tweet-date">' . $tweetDate . '</span>';
                     echo '<p class="tweet-info">Likes: ' . $likes . ' | Retweets: ' . $retweets . '</p>';
+                    // Agregar formulario para eliminar el tweet
+                    if ($userID === $userID) { // Verificar si el usuario logueado es el propietario del tweet
+                        echo '<form action="../Controller/tweet_controller.php" method="post">';
+                        echo '<input type="hidden" name="tweet_id" value="' . $tweetID . '">';
+                        echo '<button type="submit" name="delete_tweet">Eliminar</button>';
+                        echo '</form>';
+                    }
                     echo '</div>';
                     echo '</div>';
                 }
@@ -122,3 +130,10 @@ if (isset($_SESSION['Usuario'])) {
 </body>
 
 </html>
+
+<?php
+} else {
+    header("Location: ../View/index.php");
+    exit();
+}
+?>

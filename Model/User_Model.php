@@ -1,4 +1,5 @@
 <?php
+
 include('../Db/Connection_db.php');
 
 class UserModel
@@ -102,6 +103,18 @@ class UserModel
         }
     }
 
+    public function getUserById($userId)
+    {
+        global $Conexion;
+        $Consulta = "SELECT * FROM user WHERE ID_Usuario = '$userId'";
+        $Resultado = $Conexion->query($Consulta);
+
+        if ($Resultado->num_rows > 0) {
+            return $Resultado->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
 
     // Funcion para alterar el seguimiento (Este mismo metodo elimina y añade un seguimiento):
     public function toggleFollow($ID_Seguidor, $ID_Seguido)
@@ -158,3 +171,5 @@ class UserModel
         return $tweets;
     }
 }
+
+?>
