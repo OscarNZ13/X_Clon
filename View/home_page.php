@@ -87,20 +87,11 @@ if (isset($_SESSION['Usuario'])) {
                 if (!empty($tweets)) {
                     foreach ($tweets as $tweet) {
                         $tweetID = $tweet['ID_Tweet'];
-                        $userID = $tweet['ID_Usuario'];
+                        $tweetUserID = $tweet['ID_Usuario']; // Obtener el ID del usuario que creó el tweet
                         $tweetContent = $tweet['Contenido'];
                         $tweetDate = $tweet['FechaPublicacion'];
                         $likes = $tweet['Likes'];
                         $retweets = $tweet['Retweets'];
-
-                        // Consultar el nombre de usuario en la tabla de usuarios
-                        $userModel = new UserModel();
-                        $user = $userModel->getUserByID($userID);
-                        if ($user) {
-                            $username = $user['Nombre'];
-                        } else {
-                            $username = "Usuario Desconocido";
-                        }
 
                         // Mostrar el tweet con toda la información
                         echo '<div class="tweet">';
@@ -112,8 +103,8 @@ if (isset($_SESSION['Usuario'])) {
                         echo '<div class="tweet-footer">';
                         echo '<span class="tweet-date">' . $tweetDate . '</span>';
                         echo '<p class="tweet-info">Likes: ' . $likes . ' | Retweets: ' . $retweets . '</p>';
-                        // Agregar formulario para eliminar el tweet
-                        if ($userID === $userID) { // Verificar si el usuario logueado es el propietario del tweet
+                        // Agregar formulario para eliminar el tweet solo si el usuario logeado es el propietario del tweet
+                        if ($tweetUserID === $userID) { // Verificar si el usuario logeado es el propietario del tweet
                             echo '<form action="../Controller/tweet_controller.php" method="post">';
                             echo '<input type="hidden" name="tweet_id" value="' . $tweetID . '">';
                             echo '<button type="submit" name="delete_tweet">Eliminar</button>';
