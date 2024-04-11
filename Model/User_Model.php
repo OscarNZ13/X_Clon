@@ -95,7 +95,7 @@ class UserModel
         return true;
     }
 
-    // FUncion para traer toda la informacion de un usuario:
+    // Funcion para traer toda la informacion de un usuario:
     public function getUserByUsername($username)
     {
         global $Conexion;
@@ -108,6 +108,23 @@ class UserModel
             return null;
         }
     }
+
+    public function getAllUsers()
+    {
+        global $Conexion;
+        $Consulta = "SELECT * FROM user";
+        $Resultado = $Conexion->query($Consulta);
+    
+        $users = array(); // Inicializar un array para almacenar todos los usuarios
+    
+        if ($Resultado->num_rows > 0) {
+            while ($fila = $Resultado->fetch_assoc()) {
+                $users[] = $fila; // Agregar cada fila como un usuario al array
+            }
+        }
+        return $users; // Devolver el array de usuarios
+    }
+    
 
     public function getUserById($userId)
     {
@@ -127,16 +144,27 @@ class UserModel
     {
         global $Conexion;
     
+        // Verificar si ambos usuarios existen
+        $queryExistencia = "SELECT COUNT(*) AS total FROM user WHERE ID_Usuario IN ('$ID_Seguidor', '$ID_Seguido')";
+        $resultExistencia = $Conexion->query($queryExistencia);
+        $rowExistencia = $resultExistencia->fetch_assoc();
+    
+        if ($rowExistencia['total'] != 2) {
+            // Si alguno de los usuarios no existe, retornar false
+            echo "Uno o ambos usuarios no existen.";
+            return false;
+        }
+    
         // Verificar si ya existe una relación de seguimiento entre el seguidor y el seguido
-        $ConsultaExistencia = "SELECT * FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
-        $ResultadoExistencia = $Conexion->query($ConsultaExistencia);
+        $queryExistenciaRelacion = "SELECT * FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
+        $resultExistenciaRelacion = $Conexion->query($queryExistenciaRelacion);
     
-        if ($ResultadoExistencia->num_rows > 0) {
+        if ($resultExistenciaRelacion->num_rows > 0) {
             // Si ya existe la relación, eliminarla (dejar de seguir)
-            $ConsultaEliminar = "DELETE FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
-            $ResultadoEliminar = $Conexion->query($ConsultaEliminar);
+            $queryEliminar = "DELETE FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
+            $resultEliminar = $Conexion->query($queryEliminar);
     
-            if ($ResultadoEliminar === true) {
+            if ($resultEliminar === true) {
                 // Si la eliminación se realizó correctamente, se devuelve true
                 return true;
             } else {
@@ -146,10 +174,10 @@ class UserModel
             }
         } else {
             // Si no existe la relación, agregarla (seguir)
-            $ConsultaAgregar = "INSERT INTO `relacionseguimiento` (`ID_Seguidor`, `ID_Seguido`) VALUES ('$ID_Seguidor', '$ID_Seguido')";
-            $ResultadoAgregar = $Conexion->query($ConsultaAgregar);
+            $queryAgregar = "INSERT INTO `relacionseguimiento` (`ID_Seguidor`, `ID_Seguido`) VALUES ('$ID_Seguidor', '$ID_Seguido')";
+            $resultAgregar = $Conexion->query($queryAgregar);
     
-            if ($ResultadoAgregar === true) {
+            if ($resultAgregar === true) {
                 // Si la inserción se realizó correctamente, se devuelve true
                 return true;
             } else {
@@ -159,6 +187,7 @@ class UserModel
             }
         }
     }
+    
 
     public function getTweetsByUserId($userId)
     {

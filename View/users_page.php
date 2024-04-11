@@ -17,7 +17,7 @@ if (isset($_SESSION['Usuario'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>X</title>
         <link href="../Public/css/style.css" rel="stylesheet">
         <link href="../Public/css/style_tweet.css" rel="stylesheet">
     </head>
@@ -80,44 +80,32 @@ if (isset($_SESSION['Usuario'])) {
 
             <div class="main">
                 <?php
-                // Consulta SQL para recuperar los tweets
-                $tweetModel = new TweetModel();
-                $tweets = $tweetModel->getAllTweets();
+                // Consulta SQL para recuperar todos los usuarios
+                $userModel_2 = new UserModel();
+                $Users = $userModel_2->getAllUsers();
 
-                if (!empty($tweets)) {
-                    foreach ($tweets as $tweet) {
-                        $tweetID = $tweet['ID_Tweet'];
-                        $tweetUserID = $tweet['ID_Usuario']; // Obtener el ID del usuario que creó el tweet
-                        $tweetContent = $tweet['Contenido'];
-                        $tweetDate = $tweet['FechaPublicacion'];
-                        $likes = $tweet['Likes'];
-                        $retweets = $tweet['Retweets'];
-                    
-                        // Obtener el nombre de usuario del autor del tweet
-                        $tweetAuthor = $userModel->getUserByID($tweetUserID);
-                        if ($tweetAuthor) {
-                            $tweetUsername = $tweetAuthor['Nombre'];
-                        } else {
-                            $tweetUsername = "Usuario Desconocido";
-                        }
-                    
-                        // Mostrar el tweet con toda la información
+                if (!empty($Users)) {
+                    foreach ($Users as $User) {
+                        $UserID_Mostrado = $User['ID_Usuario'];
+                        $UserName = $User['Nombre'];
+                        $UserPhoto = $User['FotoPerfil'];
+
+                        // Mostrar los usuarios
                         echo '<div class="tweet">';
                         echo '<div class="user-info">';
                         echo '<img src="ruta/a/tu/imagen_de_perfil.jpg" alt="Avatar" class="user-avatar">'; // Reemplaza "ruta/a/tu/imagen_de_perfil.jpg" con la ruta de la imagen de perfil del usuario
-                        echo '<p class="username">' . $tweetUsername . '</p>'; // Mostrar el nombre del autor del tweet
+                        echo '<p class="username">' . $UserName . '</p>';
                         echo '</div>';
-                        echo '<p class="tweet-content">' . $tweetContent . '</p>';
                         echo '<div class="tweet-footer">';
-                        echo '<span class="tweet-date">' . $tweetDate . '</span>';
-                        echo '<p class="tweet-info">Likes: ' . $likes . ' | Retweets: ' . $retweets . '</p>';
-                        // Agregar formulario para eliminar el tweet solo si el usuario logeado es el propietario del tweet
-                        if ($tweetUserID === $userID) { // Verificar si el usuario logeado es el propietario del tweet
-                            echo '<form action="../Controller/tweet_controller.php" method="post">';
-                            echo '<input type="hidden" name="tweet_id" value="' . $tweetID . '">';
-                            echo '<button type="submit" name="delete_tweet">Eliminar</button>';
+                        // Agregar formulario para eliminar el tweet
+                        if ($UserID_Mostrado != $userID) {
+                            echo '<form action="../Controller/users_page_controller.php" method="post">';
+                            echo '<input type="hidden" name="user_id_f" value="' . $UserID_Mostrado . '">';
+                            echo '<input type="hidden" name="user_id_l" value="' . $userID . '">';
+                            echo '<button type="submit" name="btn-seguir">Seguir</button>';
                             echo '</form>';
                         }
+                        
                         echo '</div>';
                         echo '</div>';
                     }
