@@ -1,4 +1,5 @@
 <?php
+// User_Model.php
 
 include('../Db/Connection_db.php');
 
@@ -44,28 +45,33 @@ class UserModel
     public function RegisterUser($username, $email, $password, $location)
     {
         global $Conexion;
-
+    
+        // Verificar si el correo electrónico ya está registrado
+        $ConsultaCorreo = "SELECT ID_Usuario FROM user WHERE CorreoElectronico = '$email'";
+        $ResultadoCorreo = $Conexion->query($ConsultaCorreo);
+    
+        if ($ResultadoCorreo->num_rows > 0) {
+            // Si el correo electrónico ya está en uso, devuelve un mensaje de error
+            return "El correo electrónico ya está registrado";
+        }
+    
         // Convertir la contraseña en un hash seguro
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
+    
+        // Intentar registrar al usuario
         $Consulta = "INSERT INTO user (`Nombre`, `CorreoElectronico`, `Contraseña`, `FechaCreacion`, `Biografia`, `Ubicacion`) 
             VALUES ('$username', '$email', '$hashedPassword', current_timestamp(), 'Biografia...', '$location')";
-
         $Resultado = $Conexion->query($Consulta);
-
+    
         // Verificar si la consulta se ejecutó correctamente
         if (!$Resultado) {
             // Si hay un error en la consulta, se muestra un mensaje de error y se devuelve false
             echo "Error en la consulta: " . $Conexion->error;
             return false;
         }
-
-        // Verificar si se encontraron filas en el resultado
-        if ($Resultado->num_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
+    
+        // Si el registro se realizó correctamente, devuelve true
+        return true;
     }
 
     public function ValidarDatos($username, $email, $password, $location)

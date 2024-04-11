@@ -1,4 +1,6 @@
 <?php
+//register_controller.php
+
 session_start();
 
 include ('../Model/User_Model.php');
@@ -15,13 +17,17 @@ $UserModel = new UserModel();
 $validacion = $UserModel->ValidarDatos($username, $email, $password, $location);
 if ($validacion === true) {
     // Los datos son válidos, intenta registrar al usuario
-    if ($UserModel->RegisterUser($username, $email, $password, $location)) {
+    $registro = $UserModel->RegisterUser($username, $email, $password, $location);
+    if ($registro === true) {
         $_SESSION['Usuario'] = $username;
-        header("location: ../View/home_page.php");
+        header("location: ../View/index.php");
     } else {
-        header("location: ../View/register.php?error=1");
+        // Si hubo un error al registrar al usuario, redirige a la página de registro con el mensaje de error
+        header("location: ../View/register.php?error=" . urlencode($registro));
     }
 } else {
     // Los datos no son válidos, redireccionar al formulario de registro con el mensaje de error
-    header("location: ../View/register.php?error=" . urlencode($validacion));
+    $error_message = "Error: " . $validacion;
+    header("location: ../View/register.php?error=" . urlencode($error_message));
 }
+?>
