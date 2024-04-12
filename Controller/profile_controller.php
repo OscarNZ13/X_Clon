@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 include('../Model/user_model.php');
 
@@ -13,12 +15,10 @@ $UserModel = new UserModel();
 $user = $UserModel->getUserByUsername($username);
 
 if (!$user) {
-    // Manejar la situación si no se encuentra al usuario
+    // Handle the situation if the user is not found
     header("location: error.php");
     exit();
 }
 
 $tweets = $UserModel->getTweetsByUserId($user['ID_Usuario']);
-
-include('../View/profile.php');
 

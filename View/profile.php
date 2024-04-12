@@ -1,3 +1,8 @@
+<?php
+// Incluir el controlador del perfil
+include('../Controller/profile_controller.php');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,38 +29,36 @@
                 </ul>
             </div>
             <div class="main">
-    <div class="profile">
+    <?php if ($user) : ?>
         <div class="profile-info">
             <img src="<?php echo $user['FotoPerfil']; ?>" alt="Foto de perfil">
             <h1><?php echo $user['Nombre']; ?></h1>
-            <p>Descripción:<?php echo $user['Biografia']; ?></p>
+            <p>Descripción: <?php echo $user['Biografia']; ?></p>
             <p>Ubicación: <?php echo $user['Ubicacion']; ?></p>
             <form method="POST">
-            <button type="submit" name="leave" class="leave-btn">Seguir</button>
-            <button type="submit" name="leave" class="leave-btn">Mensaje</button>
-        </form>
+                <button type="submit" name="follow" class="leave-btn">Seguir</button>
+                <button type="submit" name="message" class="leave-btn">Mensaje</button>
+            </form>
         </div>
-        
         <div class="tweets">
-    <h2>Mis Tweets</h2>
-    <?php foreach ($tweets as $tweet) : ?>
-        <div class="tweet">
-            <p><?php echo $tweet['Contenido']; ?></p>
-            <span><?php echo $tweet['FechaPublicacion']; ?></span>
-            <div class="tweet-actions">
-                <button class="like-btn likes-count"> <?php echo $tweet['Likes']; ?> Like</button>
-                <button class="comment-btn comments-count"><?php echo $tweet['Retweets']; ?> Comentar</button>
-            </div>
+            <h2>Mis Tweets</h2>
+            <?php foreach ($tweets as $tweet) : ?>
+                <div class="tweet">
+                    <p><?php echo $tweet['Contenido']; ?></p>
+                    <span><?php echo $tweet['FechaPublicacion']; ?></span>
+                    <div class="tweet-actions">
+                        <button class="like-btn likes-count"> <?php echo $tweet['Likes']; ?> Like</button>
+                        <button class="comment-btn comments-count"><?php echo $tweet['Retweets']; ?> Comentar</button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
+    <?php endif; ?>
 </div>
-        
-    </div>
+<div class="right_sidebar">
+    <!-- Right sidebar content here -->
 </div>
-            <div class="right_sidebar">
-                <!-- Right sidebar content here -->
-            </div>
-        </div>
-    </div>
+</div>
+</div>
 </body>
 </html>
