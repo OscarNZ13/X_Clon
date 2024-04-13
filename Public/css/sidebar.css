@@ -1,0 +1,137 @@
+/* Barra lateral */
+.sidebar {
+    position: sticky;
+    top: 20px;
+    grid-area: sidebar;
+    background-color: #fff;
+    border-right: 1px solid var(--twitter-background);
+    padding: 20px 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+}
+
+.sidebar ul li.active_menu a {
+    color: var(--twitter-color);
+    font-weight: 700;
+    background-color: rgba(29, 161, 242, 0.1);
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar ul li span {
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+.sidebar .sidebar_tweet {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: var(--twitter-color);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .sidebar_tweet:hover {
+    background-color: #3f9ae5;
+}
+
+/* Botón de cierre de sesión */
+.logout-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.logout-btn i {
+    margin-right: 5px;
+}
+
+.logout-btn:hover {
+    text-decoration: underline;
+}
+/* Barra lateral derecha */
+.right_sidebar {
+    position: fixed;
+    top: 50px;
+    right: 70px;
+    width: 300px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.right_sidebar h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.trend,
+.person-to-follow {
+    margin-bottom: 15px;
+}
+
+.person-to-follow img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.person-to-follow p {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.follow-btn {
+    background-color: #1da1f2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.follow-btn:hover {
+    background-color: #0d8bf7;
+}
