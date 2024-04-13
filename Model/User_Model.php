@@ -200,6 +200,24 @@ class UserModel
         return $result->num_rows > 0; // Devuelve true si hay al menos una fila (es decir, el usuario sigue al otro), de lo contrario, devuelve false
     }
 
+    // Función para obtener los IDs de los usuarios seguidos por el usuario logeado
+    public function getFollowedUsersIDs($userID)
+    {
+        global $Conexion;
+        $followedUsersIDs = array();
+        $query = "SELECT ID_Seguido FROM relacionseguimiento WHERE ID_Seguidor = ?";
+        $stmt = $Conexion->prepare($query);
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $followedUsersIDs[] = $row['ID_Seguido'];
+            }
+        }
+        return $followedUsersIDs;
+    }
+    
     public function getTweetsByUserId($userId)
     {
         global $Conexion;

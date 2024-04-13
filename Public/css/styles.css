@@ -209,3 +209,21 @@ body {
 .unfollow-btn {
     background-color: #ff4500; /* Color para dejar de seguir */
 }
+
+.tweet-form {
+    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
+    flex-direction: row; /* Cambia la dirección del eje principal a horizontal */
+}
+
+.box-tex-tweet {
+    flex: 1; /* El textarea ocupará todo el espacio disponible */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
+    border-radius: 10px; /* Borde redondeado */
+    padding: 8px; /* Espacio interno */
+}
+
+.Btn-Agregar-Tweet {
+    width: 100px; /* Ancho del botón */
+    border-radius: 10px; /* Borde redondeado */
+    margin-left: 8px; /* Espacio entre el textarea y el botón */
+}

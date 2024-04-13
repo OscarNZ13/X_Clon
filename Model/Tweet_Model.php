@@ -77,5 +77,23 @@ class TweetModel
         }
         return $tweets;
     }
+
+    // Función para obtener los tweets de los usuarios seguidos por el usuario logeado
+    public function getTweetsFromFollowedUsers($followedUsersIDs)
+    {
+        global $Conexion;
+        $tweets = array();
+        if (!empty($followedUsersIDs)) {
+            $followedUsersIDsString = implode(",", $followedUsersIDs);
+            $query = "SELECT * FROM tweets WHERE ID_Usuario IN ($followedUsersIDsString) ORDER BY FechaPublicacion DESC";
+            $result = $Conexion->query($query);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $tweets[] = $row;
+                }
+            }
+        }
+        return $tweets;
+    }
 }
 ?>

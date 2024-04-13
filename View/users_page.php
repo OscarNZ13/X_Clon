@@ -18,7 +18,7 @@ if (isset($_SESSION['Usuario'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>X</title>
-        <link href="../Public/css/style.css?v=<?php echo (rand()); ?>" rel="stylesheet">
+        <link href="../Public/css/style_users_page.css?php echo (rand()); ?>" rel="stylesheet">
         <link href="../Public/css/style_tweet.css?v=<?php echo (rand()); ?>" rel="stylesheet">
     </head>
 
@@ -47,30 +47,6 @@ if (isset($_SESSION['Usuario'])) {
                     </button>
                 </div>
 
-            </div>
-
-            <div class="header">
-                <div class="modo-feed-box">
-                    <button type="button" class="Btn-todo">
-                        Siguiendo
-                    </button>
-                    <button type="button" class="Btn-siguiendo">
-                        Para ti
-                    </button>
-                </div>
-
-                <div class="Barra-busqueda-box">
-                    <input type="text" class="search-input" placeholder="Buscar...">
-                    <button class="search-button"></button>
-                </div>
-
-                <!-- Formulario para escribir un nuevo tweet -->
-                <div class="Nuevo-post-box">
-                    <form action="../Controller/tweet_controller.php" method="post" class="tweet-form">
-                        <textarea name="contenido" placeholder="Escribe tu tweet aquí" required></textarea>
-                        <button type="submit">Enviar</button>
-                    </form>
-                </div>
             </div>
 
             <div class="main">

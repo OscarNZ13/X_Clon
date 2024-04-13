@@ -51,7 +51,7 @@ if (isset($_SESSION['Usuario'])) {
 
                 <div class="Btn-Message-box">
                     <form action="../View/users_page.php" method="post">
-                        <button type="submit" class="Btn-Cerrar-Sesion">Usuarios</button>
+                        <button type="submit" class="Btn-Users-Page">Usuarios</button>
                     </form>
                 </div>
 
@@ -60,23 +60,18 @@ if (isset($_SESSION['Usuario'])) {
             <div class="header">
                 <div class="modo-feed-box">
                     <button type="button" class="Btn-todo">
-                        Siguiendo
+                        <a style="text-decoration: none; color: black" href='../View/feed_followed.php'>Siguiendo</a>
                     </button>
                     <button type="button" class="Btn-siguiendo">
-                        Para ti
+                    <a style="text-decoration: none; color: black" href='../View/home_page.php'>Para ti</a>
                     </button>
-                </div>
-
-                <div class="Barra-busqueda-box">
-                    <input type="text" class="search-input" placeholder="Buscar...">
-                    <button class="search-button"></button>
                 </div>
 
                 <!-- Formulario para escribir un nuevo tweet -->
                 <div class="Nuevo-post-box">
                     <form action="../Controller/tweet_controller.php" method="post" class="tweet-form">
-                        <textarea name="contenido" placeholder="Escribe tu tweet aquí" required></textarea>
-                        <button type="submit">Enviar</button>
+                        <textarea class="box-tex-tweet" name="contenido" placeholder="Escribe tu tweet aquí" required></textarea>
+                        <button type="submit" class="Btn-Agregar-Tweet">Enviar</button>
                     </form>
                 </div>
             </div>
