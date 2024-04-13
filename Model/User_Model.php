@@ -188,6 +188,17 @@ class UserModel
         }
     }
     
+    public function verificarSiUsuarioSigue($idSeguidor, $idSeguido) {
+        global $Conexion;
+
+        $stmt = $Conexion->prepare("SELECT * FROM relacionseguimiento WHERE ID_Seguidor = ? AND ID_Seguido = ?");
+        $stmt->bind_param("ii", $idSeguidor, $idSeguido);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result->num_rows > 0; // Devuelve true si hay al menos una fila (es decir, el usuario sigue al otro), de lo contrario, devuelve false
+    }
 
     public function getTweetsByUserId($userId)
     {

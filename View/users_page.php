@@ -18,8 +18,8 @@ if (isset($_SESSION['Usuario'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>X</title>
-        <link href="../Public/css/style.css" rel="stylesheet">
-        <link href="../Public/css/style_tweet.css" rel="stylesheet">
+        <link href="../Public/css/style.css?v=<?php echo (rand()); ?>" rel="stylesheet">
+        <link href="../Public/css/style_tweet.css?v=<?php echo (rand()); ?>" rel="stylesheet">
     </head>
 
     <body>
@@ -42,14 +42,9 @@ if (isset($_SESSION['Usuario'])) {
                     </p>
 
                     <button class="Btn-editar-perfil" type="button">
-                        <a href="../view/user_profile.php" class="Username-link">Editar</a>
+                        <a style="text-decoration: none; color: black" href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>'
+                            class="Username-link">Perfil</a>
                     </button>
-                </div>
-
-                <div class="Btn-Message-box">
-                    <form action="../Controller/logout_controller.php" method="post">
-                        <button type="submit" class="Btn-Cerrar-Sesion">Cerrar Sesión</button>
-                    </form>
                 </div>
 
             </div>
@@ -91,29 +86,39 @@ if (isset($_SESSION['Usuario'])) {
                         $UserPhoto = $User['FotoPerfil'];
 
                         // Mostrar los usuarios
-                        echo '<div class="tweet">';
-                        echo '<div class="user-info">';
-                        echo '<img src="ruta/a/tu/imagen_de_perfil.jpg" alt="Avatar" class="user-avatar">'; // Reemplaza "ruta/a/tu/imagen_de_perfil.jpg" con la ruta de la imagen de perfil del usuario
-                        echo '<p class="username">' . $UserName . '</p>';
-                        echo '</div>';
-                        echo '<div class="tweet-footer">';
-                        // Agregar formulario para eliminar el tweet
-                        if ($UserID_Mostrado != $userID) {
-                            echo '<form action="../Controller/users_page_controller.php" method="post">';
-                            echo '<input type="hidden" name="user_id_f" value="' . $UserID_Mostrado . '">';
-                            echo '<input type="hidden" name="user_id_l" value="' . $userID . '">';
-                            echo '<button type="submit" name="btn-seguir">Seguir</button>';
-                            echo '</form>';
-                        }
-                        
-                        echo '</div>';
-                        echo '</div>';
+                ?>
+                        <div class="tweet">
+                            <div class="user-info">
+                                <img src="<?php echo $UserPhoto; ?>" alt="Avatar" class="user-avatar">
+                                <p class="username"><?= $UserName ?></p>
+                            </div>
+                            <div class="tweet-footer">
+                                <?php
+                                // Agregar formulario para seguir o dejar de seguir al usuario
+                                if ($UserID_Mostrado != $userID) {
+                                    $userModel = new UserModel();
+                                    $sigueUsuario = $userModel->verificarSiUsuarioSigue($userID, $UserID_Mostrado);
+                                ?>
+                                    <form action="../Controller/users_page_controller.php" method="post">
+                                        <input type="hidden" name="user_id_f" value="<?= $UserID_Mostrado ?>">
+                                        <input type="hidden" name="user_id_l" value="<?= $userID ?>">
+                                        <button type="submit" name="btn-seguir" class="<?= $sigueUsuario ? 'btn-seguir' : 'btn-dejar-de-seguir' ?>">
+                                            <?= $sigueUsuario ? 'Siguiendo' : 'Seguir' ?>
+                                        </button>
+                                    </form>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                <?php
                     }
                 } else {
-                    echo "No hay tweets disponibles.";
+                    echo "No hay usuarios disponibles.";
                 }
                 ?>
             </div>
+
         </section>
     </body>
 

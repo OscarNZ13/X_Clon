@@ -18,8 +18,8 @@ if (isset($_SESSION['Usuario'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link href="../Public/css/style.css" rel="stylesheet">
-        <link href="../Public/css/style_tweet.css" rel="stylesheet">
+        <link href="../Public/css/style.css?v=<?php echo (rand()); ?>" rel="stylesheet">
+        <link href="../Public/css/style_tweet.css?v=<?php echo (rand()); ?>" rel="stylesheet">
     </head>
 
     <body>
@@ -44,15 +44,14 @@ if (isset($_SESSION['Usuario'])) {
                     </p>
 
                     <button class="Btn-editar-perfil" type="button">
-                        <a href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>'
+                        <a style="text-decoration: none; color: black" href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>'
                             class="Username-link">Perfil</a>
-
                     </button>
                 </div>
 
                 <div class="Btn-Message-box">
-                    <form action="../Controller/logout_controller.php" method="post">
-                        <button type="submit" class="Btn-Cerrar-Sesion">Cerrar Sesión</button>
+                    <form action="../View/users_page.php" method="post">
+                        <button type="submit" class="Btn-Cerrar-Sesion">Usuarios</button>
                     </form>
                 </div>
 
@@ -119,7 +118,7 @@ if (isset($_SESSION['Usuario'])) {
                         if ($tweetUserID === $userID) { // Verificar si el usuario logeado es el propietario del tweet
                             echo '<form action="../Controller/tweet_controller.php" method="post">';
                             echo '<input type="hidden" name="tweet_id" value="' . $tweetID . '">';
-                            echo '<button type="submit" name="delete_tweet">Eliminar</button>';
+                            echo '<button type="submit" name="delete_tweet" class="btn-eliminar-tweet">Eliminar</button>';
                             echo '</form>';
                         }
                         echo '</div>';

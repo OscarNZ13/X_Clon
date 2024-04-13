@@ -47,6 +47,21 @@ class TweetModel
         }
     }
 
+    // Funcion para mostrar tweets por usuario:
+    public function getTweetsForUser($ID_User){
+        global $Conexion;
+        $tweets = array();
+        // Consulta SQL para recuperar los tweets
+        $query = "SELECT * FROM tweets WHERE ID_Usuario = $ID_User ORDER BY FechaPublicacion DESC";
+        $result = $Conexion->query($query);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $tweets[] = $row;
+            }
+        }
+        return $tweets;
+    }
+
     // Función para obtener todos los tweets
     public function getAllTweets()
     {

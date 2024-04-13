@@ -3,10 +3,11 @@
     border: 5px solid #e1e8ed;
     border-radius: 12px;
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     max-width: 900px; /* Establece el ancho máximo del tweet */
     margin-left: auto; /* Centra el tweet en el contenedor */
     margin-right: auto; /* Centra el tweet en el contenedor */
+    margin-top: 10px;
 }
 /* Estilo para el contenido del tweet */
 .tweet-content {
@@ -56,6 +57,18 @@
     margin-top: 10px;
 }
 
+.btn-eliminar-tweet{
+    background: rgb(0, 0, 0);
+    box-shadow: 0 8px 32px 0 rgba(0, 17, 255, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* Estilo para los iconos de retweet y me gusta */
 .tweet-action-icon {
     margin-right: 5px;
@@ -64,4 +77,28 @@
 /* Estilo para el número de retweets y me gusta */
 .tweet-action-count {
     color: #7a8b99;
+}
+
+/* Estilos para el botón de seguir */
+.btn-seguir {
+    background: rgb(0, 0, 0);
+    box-shadow: 0 8px 32px 0 rgba(0, 17, 255, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de dejar de seguir */
+.btn-dejar-de-seguir {
+    background-color: rgb(26, 37, 190);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
