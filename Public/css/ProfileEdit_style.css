@@ -1,0 +1,53 @@
+.profile-edit {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-edit h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1da1f2; /* Color azul similar al de Twitter */
+}
+
+.profile-edit form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-group {
+    display: grid;
+    gap: 5px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #1da1f2; /* Color azul similar al de Twitter */
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.btn-profile[type="submit"] {
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: #1da1f2; /* Color azul similar al de Twitter */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-profile:hover[type="submit"]:hover {
+    background-color: #0d8bf7; /* Cambio de color al pasar el mouse similar al de Twitter */
+}

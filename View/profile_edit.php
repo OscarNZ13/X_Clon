@@ -1,24 +1,25 @@
 <?php
 // Incluir el controlador del perfil
-include ('../Controller/profile_controller.php');
+include ('../Controller/profile_edit_controller.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil</title>
+    <title>Edit Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../Public/css/styles.css">
     <link rel="stylesheet" href="../Public/css/sidebar.css">
+    <link rel="stylesheet" href="../Public/css/styles.css">
+    <link rel="stylesheet" href="../Public/css/ProfileEdit_style.css">
 </head>
 
 <body>
     <div class="container">
         <div class="grid-container">
-            <div class="sidebar">
+        <div class="sidebar">
                 <ul style="list-style:none;">
                     <li><i class="fa fa-twitter" style="color:#50b7f5;font-size:10px;"></i></li>
 
@@ -55,35 +56,36 @@ include ('../Controller/profile_controller.php');
                 </ul>
             </div>
             <div class="main">
-                <div class="profile">
-                    <?php if ($user): ?>
-                        <div class="profile-info">
-                            <img src="<?php echo $user['FotoPerfil']; ?>" alt="Foto de perfil">
-                            <h1><?php echo $user['Nombre']; ?></h1>
-                            <p>Descripción: <?php echo $user['Biografia']; ?></p>
-                            <p>Ubicación: <?php echo $user['Ubicacion']; ?></p>
-                            <form method="POST">
-                                <button type="submit" name="follow" class="leave-btn">Seguir</button>
-                                <button type="submit" name="message" class="leave-btn">Mensaje</button>
-                            </form>
+                <div class="profile-edit">
+                    <h1>Edit Profile</h1>
+                    <form action="../Controller/profile_edit_controller.php" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nombre:</label>
+                            <input type="text" id="name" name="name" value="<?php echo $user['Nombre']; ?>" required>
                         </div>
-                        <div class="tweets">
-                            <h2>Mis Tweets</h2>
-                            <?php foreach ($tweets as $tweet): ?>
-                                <div class="tweet">
-                                    <p><?php echo $tweet['Contenido']; ?></p>
-                                    <span><?php echo $tweet['FechaPublicacion']; ?></span>
-                                    <div class="tweet-actions">
-                                        <button class="like-btn likes-count"> <?php echo $tweet['Likes']; ?> Like</button>
-                                        <button class="comment-btn comments-count"><?php echo $tweet['Retweets']; ?>
-                                            Comentar</button>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email"
+                                value="<?php echo $user['CorreoElectronico']; ?>" required>
                         </div>
-                    <?php endif; ?>
+                        <div class="form-group">
+                            <label for="bio">Descripción:</label>
+                            <textarea id="bio" name="bio"><?php echo $user['Biografia']; ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Ubicación:</label>
+                            <input type="text" id="location" name="location" value="<?php echo $user['Ubicacion']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-pic">Foto de Perfil:</label>
+                            <input type="text" id="profile-pic" name="profile-pic"
+                                value="<?php echo $user['FotoPerfil']; ?>">
+                        </div>
+                        <button type="submit" name="save_changes" value="Save Changes" class="btn-profile">Guardar cambios</button>
+                    </form>
                 </div>
             </div>
+
             <div class="right_sidebar">
                 <h2>Tendencias</h2>
                 <!-- Aquí puedes incluir contenido dinámico de tendencias -->
@@ -100,18 +102,21 @@ include ('../Controller/profile_controller.php');
                 <h2>Personas para seguir</h2>
                 <!-- Aquí puedes incluir contenido dinámico de personas para seguir -->
                 <div class="person-to-follow">
-                    <img src="https://this-person-does-not-exist.com/img/avatar-gen11a51f475a14d52c0afabe1b9cdd0ff2.jpg" alt="Avatar">
+                    <img src="https://this-person-does-not-exist.com/img/avatar-gen11a51f475a14d52c0afabe1b9cdd0ff2.jpg"
+                        alt="Avatar">
                     <p>Luis Alfonso Puertas</p>
                     <button class="follow-btn">Seguir</button>
                 </div>
                 <div class="person-to-follow">
-                    <img src="https://this-person-does-not-exist.com/img/avatar-gen78c54f6dec142ac4c33c14fe035d18f6.jpg" alt="Avatar">
+                    <img src="https://this-person-does-not-exist.com/img/avatar-gen78c54f6dec142ac4c33c14fe035d18f6.jpg"
+                        alt="Avatar">
                     <p>Vanessa Blazquez</p>
                     <button class="follow-btn">Seguir</button>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const tweetButton = document.getElementById('tweetButton');

@@ -1,15 +1,15 @@
 <?php
 session_start();
-include('../Db/Connection_db.php');
-include_once('../Model/User_Model.php');
-include_once('../Model/Tweet_Model.php');
+include ('../Db/Connection_db.php');
+include_once ('../Model/User_Model.php');
+include_once ('../Model/Tweet_Model.php');
 
 if (isset($_SESSION['Usuario'])) {
     $username = $_SESSION['Usuario'];
     $userModel = new UserModel();
     $user = $userModel->getUserByUsername($username);
     $userID = $user['ID_Usuario']; // Obtener el ID_Usuario del usuario logueado
-?>
+    ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -34,7 +34,9 @@ if (isset($_SESSION['Usuario'])) {
 
                 <div class="Perfil-box">
                     <div class="Perfil-img">
-                        <img class="User-pic" src="https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg" alt="" srcset="">
+                        <img class="User-pic"
+                            src="https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg"
+                            alt="" srcset="">
                     </div>
 
                     <p class="Username-p">
@@ -42,7 +44,9 @@ if (isset($_SESSION['Usuario'])) {
                     </p>
 
                     <button class="Btn-editar-perfil" type="button">
-                        <a href="../view/user_profile.php" class="Username-link">Editar</a>
+                        <a href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>'
+                            class="Username-link">Perfil</a>
+
                     </button>
                 </div>
 
@@ -92,7 +96,7 @@ if (isset($_SESSION['Usuario'])) {
                         $tweetDate = $tweet['FechaPublicacion'];
                         $likes = $tweet['Likes'];
                         $retweets = $tweet['Retweets'];
-                    
+
                         // Obtener el nombre de usuario del autor del tweet
                         $tweetAuthor = $userModel->getUserByID($tweetUserID);
                         if ($tweetAuthor) {
@@ -100,7 +104,7 @@ if (isset($_SESSION['Usuario'])) {
                         } else {
                             $tweetUsername = "Usuario Desconocido";
                         }
-                    
+
                         // Mostrar el tweet con toda la información
                         echo '<div class="tweet">';
                         echo '<div class="user-info">';
@@ -131,7 +135,7 @@ if (isset($_SESSION['Usuario'])) {
 
     </html>
 
-<?php
+    <?php
 } else {
     header("Location: ../View/index.php");
     exit();
