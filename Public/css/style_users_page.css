@@ -14,7 +14,7 @@ html {
     height: 100vh;
     display: grid;
     grid:
-        "aside header header" 100px "aside main main" auto "aside main main" auto / 240px 1fr 1fr;
+        "aside  main main" 100px "aside main main" auto "aside main main" auto / 240px 1fr 1fr;
     gap: 3px;
 }
 
@@ -35,38 +35,12 @@ html {
     margin-top: 40px;
 }
 
-.Btn-Users-Page {
+.Btn-Cerrar-Sesion {
     border-style: none;
-    border-radius: 10px;
+    border-radius: 20px;
     height: 30px;
     width: 100px;
 }
-
-.Nuevo-post-box {
-    margin-left: auto;
-    margin-right: 3px;
-    width: 300px; /* Ancho máximo de la caja */
-    padding: 10px; /* Espacio interno */
-}
-
-.tweet-form {
-    display: flex; /* Usa flexbox para alinear los elementos horizontalmente */
-    flex-direction: row; /* Cambia la dirección del eje principal a horizontal */
-}
-
-.box-tex-tweet {
-    flex: 1; /* El textarea ocupará todo el espacio disponible */
-    box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
-    border-radius: 10px; /* Borde redondeado */
-    padding: 8px; /* Espacio interno */
-}
-
-.Btn-Agregar-Tweet {
-    width: 100px; /* Ancho del botón */
-    border-radius: 10px; /* Borde redondeado */
-    margin-left: 8px; /* Espacio entre el textarea y el botón */
-}
-
 
 .Perfil-box {
     background: rgba(0, 0, 0, 0.1);
