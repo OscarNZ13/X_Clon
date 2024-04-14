@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     $profilePic = mysqli_real_escape_string($Conexion, $_POST["profile-pic"]);
 
     // Update user profile in database with the profile picture URL
-    $sql = "UPDATE user SET Nombre='$name', CorreoElectronico='$email', Biografia='$bio', Ubicacion='$location', FotoPerfil='$profilePic' WHERE NombreUsuario='$username'";
+    $sql = "UPDATE user SET Nombre='$name', CorreoElectronico='$email', Biografia='$bio', Ubicacion='$location', FotoPerfil='$profilePic' WHERE Nombre='$username'";
 
     if ($Conexion->query($sql) === TRUE) {
         // Profile updated successfully

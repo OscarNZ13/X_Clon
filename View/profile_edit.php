@@ -11,9 +11,9 @@ if (isset($_SESSION['Usuario'])) { ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Edit Profile</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../Public/css/sidebar.css">
-        <link rel="stylesheet" href="../Public/css/styles.css">
-        <link rel="stylesheet" href="../Public/css/ProfileEdit_style.css">
+        <link rel="stylesheet" href="../Public/css/ProfileEdit_style.css?v=<?php echo (rand()); ?>">
+        <link rel="stylesheet" href="../Public/css/sidebar.css?v=<?php echo (rand()); ?>">
+        <link rel="stylesheet" href="../Public/css/styles.css?v=<?php echo (rand()); ?>">
     </head>
 
     <body>
@@ -55,7 +55,7 @@ if (isset($_SESSION['Usuario'])) { ?>
                 </div>
                 <div class="main">
                     <div class="profile-edit">
-                        <h1>Edit Profile</h1>
+                        <h1>Editar Perfil</h1>
                         <form action="../Controller/profile_edit_controller.php" method="POST">
                             <div class="form-group">
                                 <label for="name">Nombre:</label>
