@@ -5,18 +5,16 @@ require_once "../Model/User_Model.php"; // Incluir el modelo de usuario
 
 $userModel = new UserModel(); // Crear una instancia del modelo de usuario
 
-// Obtener el ID de usuario de la sesión
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+// Obtener el nombre de usuario de la sesión
+$username = isset($_SESSION['Usuario']) ? $_SESSION['Usuario'] : null;
 
-// Verificar si el usuario está autenticado y tiene un ID válido
-if (!$user_id) {
-    // Redirigir a la página de inicio de sesión si el usuario no está autenticado
-    header("location: ../View/login.php");
+if (!$username) {
+    header("location: ../View/index.php");
     exit();
 }
 
-// Obtener los datos del usuario por su ID
-$user = $userModel->getUserById($user_id);
+// Obtener los datos del usuario por su nombre de usuario
+$user = $userModel->getUserByUsername($username);
 
 // Verificar si se encontraron los datos del usuario
 if (!$user) {
@@ -37,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     $profilePic = mysqli_real_escape_string($Conexion, $_POST["profile-pic"]);
 
     // Update user profile in database with the profile picture URL
-    $sql = "UPDATE user SET Nombre='$name', CorreoElectronico='$email', Biografia='$bio', Ubicacion='$location', FotoPerfil='$profilePic' WHERE ID_Usuario={$_SESSION['user_id']}";
+    $sql = "UPDATE user SET Nombre='$name', CorreoElectronico='$email', Biografia='$bio', Ubicacion='$location', FotoPerfil='$profilePic' WHERE NombreUsuario='$username'";
 
     if ($Conexion->query($sql) === TRUE) {
         // Profile updated successfully
-        $_SESSION['success_message'] = "Perfil se actualizo correctamente!";
+        $_SESSION['success_message'] = "Perfil se actualizó correctamente!";
     } else {
         $_SESSION['error_message'] = "Error actualizando el perfil: " . $Conexion->error;
     }
