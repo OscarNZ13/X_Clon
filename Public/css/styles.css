@@ -23,6 +23,11 @@ html {
     outline: none;
 }
 
+.Small-logo {
+    width: 30px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Para mantener la proporción de la imagen */
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;

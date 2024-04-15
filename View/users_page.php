@@ -34,7 +34,15 @@ if (isset($_SESSION['Usuario'])) {
 
                 <div class="Perfil-box">
                     <div class="Perfil-img">
-                        <img class="User-pic" src="https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg" alt="" srcset="">
+                        <?php
+                        $profilePic = $user['FotoPerfil']; // Obtener la URL de la imagen de perfil desde la base de datos
+                    
+                        // Si la URL de la imagen está vacía, usar la imagen predeterminada
+                        if (empty($profilePic)) {
+                            $profilePic = 'https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg';
+                        }
+                        ?>
+                        <img class="User-pic" src="<?php echo $profilePic; ?>" alt="Foto de perfil" srcset="">
                     </div>
 
                     <p class="Username-p">
@@ -66,7 +74,7 @@ if (isset($_SESSION['Usuario'])) {
                         <div class="tweet">
                             <div class="user-info">
                                 <img src="<?php echo $UserPhoto; ?>" alt="Avatar" class="user-avatar">
-                                <p class="username"><?= $UserName ?></p>
+                                <a href="../View/profile.php?username=<?= $UserName ?>" class="username"><?= $UserName ?></a>
                             </div>
                             <div class="tweet-footer">
                                 <?php

@@ -22,12 +22,17 @@ if (isset($_SESSION['Usuario'])) { ?>
             <div class="grid-container">
                 <div class="sidebar">
                     <ul style="list-style:none;">
-                        <li><i class="fa fa-twitter" style="color:#50b7f5;font-size:10px;"></i></li>
+                        <div class="Logo-box">
+                            <a href="../View/home_page.php">
+                                <img class="Small-logo" src="../Public/img/X_logo.png" alt="Twitter Logo">
+                            </a>
+                        </div>
+                        <br>
 
                         <li class="active_menu"><a href='../View/home_page.php'><i class="fa fa-home"
                                     style="color:#50b7f5;"></i><span style="color:#50b7f5;">Home</span></a></li>
 
-                        <li><a href='#'><i class="fa fa-hashtag"></i><span>Explorar</span></a></li>
+                        <li><a href='../View/users_page.php'><i class="fa fa-users"></i><span>Usuarios</span></a></li>
 
                         <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i><span>Notificaciones</span>
 
