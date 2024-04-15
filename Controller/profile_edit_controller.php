@@ -33,6 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     $bio = mysqli_real_escape_string($Conexion, $_POST["bio"]);
     $location = mysqli_real_escape_string($Conexion, $_POST["location"]);
     $profilePic = mysqli_real_escape_string($Conexion, $_POST["profile-pic"]);
+    $nameChanged = $_POST['name_changed']; // Obtener el valor del campo oculto
+    // Check if the name has changed
+    $nameHasChanged = $name !== $user['Nombre'];
 
     // Update user profile in database with the profile picture URL
     $sql = "UPDATE user SET Nombre='$name', CorreoElectronico='$email', Biografia='$bio', Ubicacion='$location', FotoPerfil='$profilePic' WHERE Nombre='$username'";
@@ -40,11 +43,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST)) {
     if ($Conexion->query($sql) === TRUE) {
         // Profile updated successfully
         $_SESSION['success_message'] = "Perfil se actualizó correctamente!";
+        if ($nameHasChanged && $nameChanged === "true") {
+            // Si el nombre ha sido cambiado, desloguear al usuario
+            unset($_SESSION['Usuario']);
+            session_destroy();
+            header("location: ../View/index.php"); // Redirigir al inicio de sesión
+            exit();
+        } else {
+            header("location: ../View/profile.php?username=" . $username); // Redirect back to profile edit page
+            exit();
+        }
     } else {
         $_SESSION['error_message'] = "Error actualizando el perfil: " . $Conexion->error;
     }
 
     $Conexion->close(); // Close database connection
-    header("location: ../View/profile.php"); // Redirect back to profile edit page
-    exit();
 }

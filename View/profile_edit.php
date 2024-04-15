@@ -1,6 +1,6 @@
 <?php
 // Incluir el controlador del perfil
-include('../Controller/profile_edit_controller.php');
+include ('../Controller/profile_edit_controller.php');
 if (isset($_SESSION['Usuario'])) { ?>
 
     <!DOCTYPE html>
@@ -14,6 +14,7 @@ if (isset($_SESSION['Usuario'])) { ?>
         <link rel="stylesheet" href="../Public/css/ProfileEdit_style.css?v=<?php echo (rand()); ?>">
         <link rel="stylesheet" href="../Public/css/sidebar.css?v=<?php echo (rand()); ?>">
         <link rel="stylesheet" href="../Public/css/styles.css?v=<?php echo (rand()); ?>">
+        <script src="../Public/js/profileEdit_script.js?v=<?php echo (rand()); ?>"></script>
     </head>
 
     <body>
@@ -23,7 +24,8 @@ if (isset($_SESSION['Usuario'])) { ?>
                     <ul style="list-style:none;">
                         <li><i class="fa fa-twitter" style="color:#50b7f5;font-size:10px;"></i></li>
 
-                        <li class="active_menu"><a href='../View/home_page.php'><i class="fa fa-home" style="color:#50b7f5;"></i><span style="color:#50b7f5;">Home</span></a></li>
+                        <li class="active_menu"><a href='../View/home_page.php'><i class="fa fa-home"
+                                    style="color:#50b7f5;"></i><span style="color:#50b7f5;">Home</span></a></li>
 
                         <li><a href='#'><i class="fa fa-hashtag"></i><span>Explorar</span></a></li>
 
@@ -31,7 +33,8 @@ if (isset($_SESSION['Usuario'])) { ?>
 
                         <li id='messagePopup'><a><i class="fa fa-envelope" aria-hidden='true'></i><span>Mensajes</span>
 
-                        <li><a href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>' class="Username-link"><i class="fa fa-user"></i> Perfil</a></li>
+                        <li><a href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>'
+                                class="Username-link"><i class="fa fa-user"></i> Perfil</a></li>
 
                         <li><a href='../View/profile_edit.php'><i class="fa fa-cog"></i><span>Editar Perfil</span></a></li>
                         <li>
@@ -43,7 +46,8 @@ if (isset($_SESSION['Usuario'])) { ?>
                             </form>
                         </li>
 
-                        <li id='tweetButton'><button class="sidebar_tweet button addTweetBtn" style="outline:none;">Tweet</button></li>
+                        <li id='tweetButton'><button class="sidebar_tweet button addTweetBtn"
+                                style="outline:none;">Tweet</button></li>
                         <li id="tweetBox" style="display:none;">
                             <form action="../Controller/tweet_controller.php" method="post" class="tweet-form">
                                 <textarea name="contenido" placeholder="Escribe tu tweet aquí" required></textarea>
@@ -56,14 +60,19 @@ if (isset($_SESSION['Usuario'])) { ?>
                 <div class="main">
                     <div class="profile-edit">
                         <h1>Editar Perfil</h1>
-                        <form action="../Controller/profile_edit_controller.php" method="POST">
+                        <form action="../Controller/profile_edit_controller.php" method="POST"
+                            onsubmit="return confirmChanges()">
                             <div class="form-group">
                                 <label for="name">Nombre:</label>
                                 <input type="text" id="name" name="name" value="<?php echo $user['Nombre']; ?>" required>
                             </div>
+                            <!-- Indicador del cambio de nombre -->
+                            <input type="hidden" name="name_changed" id="name_changed" value="false">
+
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" value="<?php echo $user['CorreoElectronico']; ?>" required>
+                                <input type="email" id="email" name="email"
+                                    value="<?php echo $user['CorreoElectronico']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="bio">Descripción:</label>
@@ -75,9 +84,11 @@ if (isset($_SESSION['Usuario'])) { ?>
                             </div>
                             <div class="form-group">
                                 <label for="profile-pic">Foto de Perfil:</label>
-                                <input type="text" id="profile-pic" name="profile-pic" value="<?php echo $user['FotoPerfil']; ?>">
+                                <input type="text" id="profile-pic" name="profile-pic"
+                                    value="<?php echo $user['FotoPerfil']; ?>">
                             </div>
-                            <button type="submit" name="save_changes" value="Save Changes" class="btn-profile">Guardar cambios</button>
+                            <button type="submit" name="save_changes" value="Save Changes" class="btn-profile">Guardar
+                                cambios</button>
                         </form>
                     </div>
                 </div>
@@ -98,37 +109,24 @@ if (isset($_SESSION['Usuario'])) { ?>
                     <h2>Personas para seguir</h2>
                     <!-- Aquí puedes incluir contenido dinámico de personas para seguir -->
                     <div class="person-to-follow">
-                        <img src="https://this-person-does-not-exist.com/img/avatar-gen11a51f475a14d52c0afabe1b9cdd0ff2.jpg" alt="Avatar">
+                        <img src="https://this-person-does-not-exist.com/img/avatar-gen11a51f475a14d52c0afabe1b9cdd0ff2.jpg"
+                            alt="Avatar">
                         <p>Luis Alfonso Puertas</p>
                         <button class="follow-btn">Seguir</button>
                     </div>
                     <div class="person-to-follow">
-                        <img src="https://this-person-does-not-exist.com/img/avatar-gen78c54f6dec142ac4c33c14fe035d18f6.jpg" alt="Avatar">
+                        <img src="https://this-person-does-not-exist.com/img/avatar-gen78c54f6dec142ac4c33c14fe035d18f6.jpg"
+                            alt="Avatar">
                         <p>Vanessa Blazquez</p>
                         <button class="follow-btn">Seguir</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const tweetButton = document.getElementById('tweetButton');
-                const tweetBox = document.getElementById('tweetBox');
-
-                tweetButton.addEventListener('click', function() {
-                    if (tweetBox.style.display === 'none' || tweetBox.style.display === '') {
-                        tweetBox.style.display = 'block';
-                    } else {
-                        tweetBox.style.display = 'none';
-                    }
-                });
-            });
-        </script>
     </body>
 
     </html>
-<?php
+    <?php
 } else {
     header("Location: ../View/index.php");
     exit();
