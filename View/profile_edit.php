@@ -9,7 +9,8 @@ if (isset($_SESSION['Usuario'])) { ?>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit Profile</title>
+        <title>Editar Perfil</title>
+        <link rel="icon" href="../Public/img/X_logo.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../Public/css/ProfileEdit_style.css?v=<?php echo (rand()); ?>">
         <link rel="stylesheet" href="../Public/css/sidebar.css?v=<?php echo (rand()); ?>">

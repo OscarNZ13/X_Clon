@@ -17,7 +17,8 @@ if (isset($_SESSION['Usuario'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Siguiendo</title>
+        <link rel="icon" href="../Public/img/X_logo.png" type="image/x-icon">
         <link href="../Public/css/style.css?v=<?php echo (rand()); ?>" rel="stylesheet">
         <link href="../Public/css/style_tweet.css?v=<?php echo (rand()); ?>" rel="stylesheet">
     </head>
