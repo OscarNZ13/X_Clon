@@ -33,6 +33,20 @@ CREATE TABLE `relacionseguimiento` (
   `FechaInicio` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `relacionseguimiento`
+--
+
+INSERT INTO `relacionseguimiento` (`ID_Seguidor`, `ID_Seguido`, `FechaInicio`) VALUES
+(4, 1, '2024-04-16 16:02:17'),
+(4, 5, '2024-04-16 16:15:36'),
+(5, 1, '2024-04-16 16:03:05'),
+(5, 4, '2024-04-16 16:03:05'),
+(6, 1, '2024-04-16 16:05:48'),
+(6, 4, '2024-04-16 16:05:48'),
+(6, 5, '2024-04-16 16:05:47');
+
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +61,18 @@ CREATE TABLE `tweets` (
   `Likes` int(11) DEFAULT 0,
   `Retweets` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tweets`
+--
+
+INSERT INTO `tweets` (`ID_Tweet`, `ID_Usuario`, `Contenido`, `FechaPublicacion`, `Likes`, `Retweets`) VALUES
+(1, 1, 'Este es el primer tweet', '2024-04-16 16:00:31', 10, 5),
+(2, 1, 'Este es el segundo tweet', '2024-04-16 16:00:31', 8, 3),
+(3, 4, 'Hola, este es mi primer tweet oficial!', '2024-04-16 16:01:58', 0, 0),
+(4, 5, 'Tengo hambre :(', '2024-04-16 16:04:11', 0, 0),
+(5, 6, 'Hola, hoy esta haciendo frio en Cartago!!', '2024-04-16 16:06:41', 0, 0);
+
 
 -- --------------------------------------------------------
 
@@ -70,7 +96,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID_Usuario`, `Nombre`, `CorreoElectronico`, `Contraseña`, `FechaCreacion`, `Biografia`, `Ubicacion`, `FotoPerfil`) VALUES
-(1, 'Oscar', 'oscarnaranjoz13@gmail.com', 'oscar123', '2024-03-07 18:14:41', 'lml', 'Alajuela', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pngtree.com%2Ffree-backgrounds-photos%2Ftwitter-sin-foto-de-perfil&psig=AOvVaw1ZxZE2OmqtnVfoS18r53hF&ust=1709921481401000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCKCcrYbg4oQDFQAAAAAdAAAAABAF');
+(1, 'Oscar', 'oscarnaranjoz13@gmail.com', 'oscar123', '2024-03-07 18:14:41', 'lml', 'Alajuela', 'https://this-person-does-not-exist.com/img/avatar-gen119757fec2376061de50c4b49813e3bf.jpg'),
+(4, 'Karen', 'karen23@gmail.com', '$2y$10$A8X.ZiawP3yZyUNhamKFAuDA9xnQ9mAUvH.00phpV/fazM3qUl/H2', '2024-04-16 16:01:02', 'Nueva en esta red social!', 'Heredia', 'https://this-person-does-not-exist.com/img/avatar-gen7069df8cb3781eda6fa0101b47bdc1bd.jpg'),
+(5, 'Ana', 'Ana@gmail.com', '$2y$10$UACP9m3UAmcuqwYixbVuK.DHrtbKcuEe5tG6iOuuJYcNlsvNweiLG', '2024-04-16 16:02:42', 'Feliz!', 'Heredia', 'https://this-person-does-not-exist.com/img/avatar-gen14c5fa5d48f07f4709a4d3f265e31262.jpg'),
+(6, 'Juan', 'Juan@gmail.com', '$2y$10$E3aHUB6jE7.dIxtYPjZ8veomY1z6V3dx5hFBjn1BHldQoSzxwhW92', '2024-04-16 16:04:54', 'Biografia...', 'Cartago', 'https://this-person-does-not-exist.com/img/avatar-gen520adb257041c2085a2eb1b7b675d490.jpg');
 
 
 --
