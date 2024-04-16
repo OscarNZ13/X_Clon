@@ -1,7 +1,7 @@
 <?php
 // User_Model.php
 
-include('../Db/Connection_db.php');
+include ('../Db/Connection_db.php');
 
 class UserModel
 {
@@ -45,31 +45,31 @@ class UserModel
     public function RegisterUser($username, $email, $password, $location)
     {
         global $Conexion;
-    
+
         // Verificar si el correo electrónico ya está registrado
         $ConsultaCorreo = "SELECT ID_Usuario FROM user WHERE CorreoElectronico = '$email'";
         $ResultadoCorreo = $Conexion->query($ConsultaCorreo);
-    
+
         if ($ResultadoCorreo->num_rows > 0) {
             // Si el correo electrónico ya está en uso, devuelve un mensaje de error
             return "El correo electrónico ya está registrado";
         }
-    
+
         // Convertir la contraseña en un hash seguro
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
+
         // Intentar registrar al usuario
         $Consulta = "INSERT INTO user (`Nombre`, `CorreoElectronico`, `Contraseña`, `FechaCreacion`, `Biografia`, `Ubicacion`) 
             VALUES ('$username', '$email', '$hashedPassword', current_timestamp(), 'Biografia...', '$location')";
         $Resultado = $Conexion->query($Consulta);
-    
+
         // Verificar si la consulta se ejecutó correctamente
         if (!$Resultado) {
             // Si hay un error en la consulta, se muestra un mensaje de error y se devuelve false
             echo "Error en la consulta: " . $Conexion->error;
             return false;
         }
-    
+
         // Si el registro se realizó correctamente, devuelve true
         return true;
     }
@@ -114,9 +114,9 @@ class UserModel
         global $Conexion;
         $Consulta = "SELECT * FROM user";
         $Resultado = $Conexion->query($Consulta);
-    
+
         $users = array(); // Inicializar un array para almacenar todos los usuarios
-    
+
         if ($Resultado->num_rows > 0) {
             while ($fila = $Resultado->fetch_assoc()) {
                 $users[] = $fila; // Agregar cada fila como un usuario al array
@@ -124,7 +124,7 @@ class UserModel
         }
         return $users; // Devolver el array de usuarios
     }
-    
+
 
     public function getUserById($userId)
     {
@@ -143,27 +143,27 @@ class UserModel
     public function toggleFollow($ID_Seguidor, $ID_Seguido)
     {
         global $Conexion;
-    
+
         // Verificar si ambos usuarios existen
         $queryExistencia = "SELECT COUNT(*) AS total FROM user WHERE ID_Usuario IN ('$ID_Seguidor', '$ID_Seguido')";
         $resultExistencia = $Conexion->query($queryExistencia);
         $rowExistencia = $resultExistencia->fetch_assoc();
-    
+
         if ($rowExistencia['total'] != 2) {
             // Si alguno de los usuarios no existe, retornar false
             echo "Uno o ambos usuarios no existen.";
             return false;
         }
-    
+
         // Verificar si ya existe una relación de seguimiento entre el seguidor y el seguido
         $queryExistenciaRelacion = "SELECT * FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
         $resultExistenciaRelacion = $Conexion->query($queryExistenciaRelacion);
-    
+
         if ($resultExistenciaRelacion->num_rows > 0) {
             // Si ya existe la relación, eliminarla (dejar de seguir)
             $queryEliminar = "DELETE FROM `relacionseguimiento` WHERE `ID_Seguidor` = '$ID_Seguidor' AND `ID_Seguido` = '$ID_Seguido'";
             $resultEliminar = $Conexion->query($queryEliminar);
-    
+
             if ($resultEliminar === true) {
                 // Si la eliminación se realizó correctamente, se devuelve true
                 return true;
@@ -176,7 +176,7 @@ class UserModel
             // Si no existe la relación, agregarla (seguir)
             $queryAgregar = "INSERT INTO `relacionseguimiento` (`ID_Seguidor`, `ID_Seguido`) VALUES ('$ID_Seguidor', '$ID_Seguido')";
             $resultAgregar = $Conexion->query($queryAgregar);
-    
+
             if ($resultAgregar === true) {
                 // Si la inserción se realizó correctamente, se devuelve true
                 return true;
@@ -187,8 +187,9 @@ class UserModel
             }
         }
     }
-    
-    public function verificarSiUsuarioSigue($idSeguidor, $idSeguido) {
+
+    public function verificarSiUsuarioSigue($idSeguidor, $idSeguido)
+    {
         global $Conexion;
 
         $stmt = $Conexion->prepare("SELECT * FROM relacionseguimiento WHERE ID_Seguidor = ? AND ID_Seguido = ?");
@@ -217,7 +218,7 @@ class UserModel
         }
         return $followedUsersIDs;
     }
-    
+
     public function getTweetsByUserId($userId)
     {
         global $Conexion;
@@ -234,6 +235,28 @@ class UserModel
         }
         return $tweets;
     }
+    public function getFollowers($userID)
+    {
+        global $Conexion; // Necesario si estás usando la conexión global
+    
+        $followers = array();
+        $query = "SELECT ID_Seguidor, Nombre, FotoPerfil 
+                  FROM user 
+                  INNER JOIN relacionseguimiento r ON ID_Usuario = ID_Seguidor 
+                  WHERE ID_Seguido = ?";
+        $stmt = $Conexion->prepare($query);
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $followers[] = $row;
+            }
+        }
+        return $followers;
+    }
 }
+
+
 
 ?>

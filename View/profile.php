@@ -10,7 +10,8 @@ if (isset($_SESSION['Usuario'])) {
     if ($username) {
         $userModel_P = new UserModel();
         $user = $userModel_P->getUserByUsername($username);
-        $userID_P = $user['ID_Usuario']; // Obtener el ID_Usuario del usuario del perfil
+        $userID_P = $user['ID_Usuario'];
+        $userID = $user['ID_Usuario']; // Obtener el ID_Usuario del usuario del perfil
 
         if ($user) {
             // Continuar mostrando el perfil del usuario
@@ -149,19 +150,26 @@ if (isset($_SESSION['Usuario'])) {
                         <p>#UFidélitas</p>
                     </div>
 
-                    <h2>Personas para seguir</h2>
-                    <!-- Aquí puedes incluir contenido dinámico de personas para seguir -->
+                    <h2>Seguidores</h2>
+                    <!-- Aquí puedes incluir contenido dinámico de personas que me siguen -->
                     <div class="person-to-follow">
-                        <img src="https://this-person-does-not-exist.com/img/avatar-gen11a51f475a14d52c0afabe1b9cdd0ff2.jpg"
-                            alt="Avatar">
-                        <p>Luis Alfonso Puertas</p>
-                        <button class="follow-btn">Seguir</button>
-                    </div>
-                    <div class="person-to-follow">
-                        <img src="https://this-person-does-not-exist.com/img/avatar-gen78c54f6dec142ac4c33c14fe035d18f6.jpg"
-                            alt="Avatar">
-                        <p>Vanessa Blazquez</p>
-                        <button class="follow-btn">Seguir</button>
+                        <?php
+                        // Obtener los seguidores del usuario
+                        $userModel = new UserModel();
+                        $followers = $userModel->getFollowers($userID);
+
+                        // Mostrar los seguidores
+                        foreach ($followers as $follower) {
+                            $followerName = $follower['Nombre'];
+                            $followerPhoto = $follower['FotoPerfil'];
+
+                            // Mostrar información de los seguidores
+                            echo "<div class='person-to-follow'>";
+                            echo "<img src='$followerPhoto' alt='Avatar' class='follower-avatar'>";
+                            echo "<a href='../View/profile.php?username=$followerName' class='username'>$followerName</a>";
+                            echo "</div>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

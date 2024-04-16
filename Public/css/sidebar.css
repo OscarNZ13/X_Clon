@@ -119,10 +119,10 @@
 }
 
 .person-to-follow img {
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .person-to-follow p {
@@ -131,7 +131,9 @@
     font-size: 16px;
     font-weight: bold;
     margin-right: 10px;
+    text-align: left;
 }
+
 
 .follow-btn {
     background-color: #1da1f2;
@@ -145,4 +147,13 @@
 
 .follow-btn:hover {
     background-color: #0d8bf7;
+}
+
+.username {
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    color: #ffffff; /* Color del texto del enlace */
+}
+
+.username:hover {
+    color: #50b7f5; /* Color del texto del enlace al pasar el mouse */
 }
