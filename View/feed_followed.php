@@ -1,8 +1,8 @@
 <?php
 session_start();
-include_once('../Db/Connection_db.php');
-include_once('../Model/User_Model.php');
-include_once('../Model/Tweet_Model.php');
+include_once ('../Db/Connection_db.php');
+include_once ('../Model/User_Model.php');
+include_once ('../Model/Tweet_Model.php');
 
 if (isset($_SESSION['Usuario'])) {
     $username = $_SESSION['Usuario'];
@@ -34,9 +34,15 @@ if (isset($_SESSION['Usuario'])) {
 
                 <div class="Perfil-box">
                     <div class="Perfil-img">
-                        <img class="User-pic"
-                            src="https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg"
-                            alt="" srcset="">
+                        <?php
+                        $profilePic = $user['FotoPerfil']; // Obtener la URL de la imagen de perfil desde la base de datos
+                    
+                        // Si la URL de la imagen está vacía, usar la imagen predeterminada
+                        if (empty($profilePic)) {
+                            $profilePic = 'https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg';
+                        }
+                        ?>
+                        <img class="User-pic" src="<?php echo $profilePic; ?>" alt="Foto de perfil" srcset="">
                     </div>
 
                     <p class="Username-p">
@@ -44,7 +50,8 @@ if (isset($_SESSION['Usuario'])) {
                     </p>
 
                     <button class="Btn-editar-perfil" type="button">
-                        <a style="text-decoration: none; color: black" href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>'
+                        <a style="text-decoration: none; color: black"
+                            href='../View/profile.php?username=<?php echo $_SESSION['Usuario']; ?>'
                             class="Username-link">Perfil</a>
                     </button>
                 </div>
@@ -58,19 +65,20 @@ if (isset($_SESSION['Usuario'])) {
             </div>
 
             <div class="header">
-            <div class="modo-feed-box">
+                <div class="modo-feed-box">
                     <button type="button" class="Btn-todo">
                         <a style="text-decoration: none; color: black" href='../View/feed_followed.php'>Siguiendo</a>
                     </button>
                     <button type="button" class="Btn-siguiendo">
-                    <a style="text-decoration: none; color: black" href='../View/home_page.php'>Para ti</a>
+                        <a style="text-decoration: none; color: black" href='../View/home_page.php'>Para ti</a>
                     </button>
                 </div>
 
                 <!-- Formulario para escribir un nuevo tweet -->
                 <div class="Nuevo-post-box">
                     <form action="../Controller/tweet_controller.php" method="post" class="tweet-form">
-                        <textarea class="box-tex-tweet" name="contenido" placeholder="Escribe tu tweet aquí" required></textarea>
+                        <textarea class="box-tex-tweet" name="contenido" placeholder="Escribe tu tweet aquí"
+                            required></textarea>
                         <button type="submit" class="Btn-Agregar-Tweet">Enviar</button>
                     </form>
                 </div>
@@ -98,15 +106,17 @@ if (isset($_SESSION['Usuario'])) {
                         $tweetAuthor = $userModel->getUserByID($tweetUserID);
                         if ($tweetAuthor) {
                             $tweetUsername = $tweetAuthor['Nombre'];
+                            $tweetUserProfilePic = $tweetAuthor['FotoPerfil'];
                         } else {
                             $tweetUsername = "Usuario Desconocido";
+                            $tweetUserProfilePic = "ruta/a/tu/imagen_de_perfil.jpg";
                         }
 
                         // Mostrar el tweet con toda la información
                         echo '<div class="tweet">';
                         echo '<div class="user-info">';
-                        echo '<img src="ruta/a/tu/imagen_de_perfil.jpg" alt="Avatar" class="user-avatar">'; // Reemplaza "ruta/a/tu/imagen_de_perfil.jpg" con la ruta de la imagen de perfil del usuario
-                        echo '<p class="username">' . $tweetUsername . '</p>'; // Mostrar el nombre del autor del tweet
+                        echo '<img src="' . $tweetUserProfilePic . '" alt="Avatar" class="user-avatar">'; // Utilizar la ruta de la imagen de perfil del autor del tweet
+                        echo '<p class="username"><a href="../View/profile.php?username=' . $tweetUsername . '">' . $tweetUsername . '</a></p>'; // Mostrar el nombre del autor del tweet como un enlace al perfil del usuario
                         echo '</div>';
                         echo '<p class="tweet-content">' . $tweetContent . '</p>';
                         echo '<div class="tweet-footer">';
