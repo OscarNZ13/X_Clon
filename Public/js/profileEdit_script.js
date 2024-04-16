@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 function confirmChanges() {
-    if (confirm('¿Estás seguro de que deseas guardar los cambios? \n\n\nImportante: Sí realizó un cambio en el campo nombre, automáticamente deberá iniciar sesión nuevamente.')) {
+    if (confirm('¿Estás seguro de que deseas guardar los cambios? \n\n\nNota: Si has modificado tu nombre, será necesario iniciar sesión nuevamente para aplicar los cambios.')) {
         checkNameChanged();
         return true; // Continuar con el envío del formulario
     } else {
